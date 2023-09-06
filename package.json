@@ -3,11 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "format": "yarn format",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "dev": "yarn dev",
     "build": "yarn build",
     "start": "yarn start",
-    "lint": "yarn lint"
+    "type-check": "tsc --noEmit",
+    "lint": "eslint --max-warnings=0 .",
+    "check-all": "yarn type-check && yarn lint && yarn format"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",
