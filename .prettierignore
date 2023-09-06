@@ -1,0 +1,10 @@
+
+build
+coverage
+dist
+
+yarn.lock
+
+**/*.log
+
+**/*.html
