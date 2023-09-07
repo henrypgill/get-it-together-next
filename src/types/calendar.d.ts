@@ -1,4 +1,3 @@
-
 type ActionObject<T> = { [key: string]: T };
 export type ActionPayload = ActionObject;
 export type ActionMeta = ActionObject;
