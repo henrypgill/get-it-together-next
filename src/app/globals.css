@@ -1,0 +1,45 @@
+:root {
+  --background-color: black;
+  --text-color: white;
+}
+
+html {
+  background-color: var(--background-color);
+}
+
+
+main {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.main-content-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 16px;
+  margin-top: 32px;
+  max-width: 1440px;
+  width: 100%;
+  min-height: 800px;
+}
+
+h1, h2, h3, h4, h5, p, body {
+  padding: 0px;
+  margin: 0px;
+  color: var(--text-color);
+}
+
+ul, ol{
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+  color: var(--text-color);
+}
