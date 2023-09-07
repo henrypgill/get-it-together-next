@@ -1,12 +1,13 @@
-import Image from "next/image";
-// import styles from "./page.module.css";
-import "../styles/style.css"
-import { Header } from "../components/Header";
+import "../styles/app.css"
+
 
 export default function Home(): JSX.Element {
   return (
     <>
-      <div><h1>test</h1></div>
+      <section className="home-page-title-section">
+        <h1 className="home-page-title">Get It Together</h1>
+        <h2 className="home-page-subtitle">Plan things together, choose a where, choose a when, choose a why, and choose a how.</h2>
+        </section>
     </>
   );
 }
