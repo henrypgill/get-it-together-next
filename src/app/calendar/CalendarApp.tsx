@@ -1,5 +1,5 @@
 import { Provider, useSelector } from "react-redux";
-import { calendarSlice } from "../../redux/calendarSlice";
+import { calendarSlice } from "../../redux/slices/calendarSlice";
 import store from "../../redux/store";
 import "../../styles/Calendar.css";
 import "../../styles/DayCard.css";
@@ -13,8 +13,6 @@ interface RootState {
 }
 
 export function CalendarApp(): JSX.Element {
-    console.log("loading calendar component");
-    // const calendarState = store.getState().calendar;
     const calendarState = useSelector((state: RootState) => state.calendar);
 
     function handleNextMonthClick() {
