@@ -1,14 +1,13 @@
-
 footer {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  align-items: center;
-  justify-content: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
 }
 
 .footer-content-container {
     width: 100%;
-  margin-top: 32px;
-  max-width: 1440px;
+    margin-top: 32px;
+    max-width: 1440px;
 }

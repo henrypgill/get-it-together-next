@@ -1,5 +1,3 @@
-
-
 export interface DbEventData {
     event_id: number;
     event_host: DbUserData;
@@ -41,4 +39,4 @@ export type EventDay = number;
 export type EventTime = {
     hour: number;
     minute: number;
-}
+};
