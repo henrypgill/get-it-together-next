@@ -1,40 +1,5 @@
-import { CalendarData, CalendarDay } from "@/src/types/calendar";
-
-/**
- *
- * @param month the month which you wish to get the CalendarDays for.
- * @returns an array of CalendarDays objects for the given month without their associated users.
- */
-export function getCalendarDaysOfMonth(
-    year: number,
-    monthIndex: number
-): CalendarDay[] {
-    const firstDayOfMonth = new Date(year, monthIndex, 1);
-    const firstDayOfMonthIndex = firstDayOfMonth.getDay();
-    const numberOfDaysInMonth = getNumberOfDaysInMonth(monthIndex);
-    const days = [];
-    let i = 1;
-    let weekIndex = 1;
-    let dayIndex = firstDayOfMonthIndex;
-
-    while (i <= numberOfDaysInMonth) {
-        while (i <= numberOfDaysInMonth && dayIndex <= 7) {
-            const dayDate = new Date(year, monthIndex, i);
-            const newDay: CalendarDay = {
-                date: dayDate.getTime(),
-                weekIndex: weekIndex,
-                dayIndex: dayIndex,
-            };
-            days.push(newDay);
-            dayIndex++;
-            i++;
-        }
-        weekIndex++;
-        dayIndex = 1;
-    }
-
-    return days;
-}
+import { CalendarData } from "@/src/types/calendar";
+import { getCalendarDaysOfMonth } from "./getCalendarDays";
 
 export function getInitialCalendarState(currentDate?: Date): CalendarData {
     const date = getFirstDayOfMonth(currentDate ?? new Date());
