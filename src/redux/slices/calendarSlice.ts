@@ -13,7 +13,6 @@ interface CalendarPayload_number {
     value: number;
 }
 
-
 export const calendarSlice = createSlice({
     name: "calendar",
     initialState: getInitialCalendarState(),
