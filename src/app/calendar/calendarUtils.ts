@@ -21,7 +21,7 @@ export function setMonth(targetMonthIndex: number, calendar: CalendarData) {
 }
 
 export function stepYear(n = 1, calendar: CalendarData) {
-    calendar.days = getCalendarDaysOfMonth(calendar.year, calendar.monthIndex);
+    calendar.days = getCalendarDaysOfMonth(calendar.year + n, calendar.monthIndex);
     calendar.year += n;
 }
 
