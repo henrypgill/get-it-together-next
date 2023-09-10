@@ -1,22 +1,15 @@
-import { CalendarDay } from "@/src/types/calendar";
+import { AppDate } from "@/src/core/types/appDate";
 
-interface DayCardProps extends Partial<CalendarDay> {
-    date_number: number;
-    weekIndex: number;
-    dayIndex: number;
+interface DayCardProps extends Partial<AppDate> {
+    day: number;
+    week: number;
+    date: number;
 }
 
-export function DayCard({
-    date_number,
-    weekIndex,
-    dayIndex,
-}: DayCardProps): JSX.Element {
-    const date = new Date(date_number);
-    // console.log( date.getDate(), weekIndex, dayIndex);
-
+export function DayCard({ day, week, date }: DayCardProps): JSX.Element {
     return (
-        <button className={`day-card calendar-cell-${weekIndex}-${dayIndex}`}>
-            <h3 className="day-card-date">{date.getDate()}</h3>
+        <button className={`day-card calendar-cell-${week}-${day}`}>
+            <h3 className="day-card-date">{date}</h3>
             <div className="user-list-container">
                 <ul className="day-users-list"></ul>
             </div>

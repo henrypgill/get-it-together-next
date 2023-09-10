@@ -1,0 +1,1 @@
+SELECT * from event_dates

@@ -5,7 +5,6 @@ export interface DbUser {
     first_name: string;
     last_name: string;
     email: string;
-    image_url: string;
 }
 export interface DbEventDate {
     id: number;
@@ -17,7 +16,6 @@ export interface DbEvent {
     id: number;
     name: string;
     host_user_id: number;
-    image_url: string;
 }
 
 type EventId = number;
@@ -30,7 +28,7 @@ export interface User extends DbUser {
 
 export interface EventDate extends DbEventDate {}
 
-export interface Event extends DbEvent {
+export interface AppEvent extends DbEvent {
     users: UserId[];
     dates: EventDate[];
 }

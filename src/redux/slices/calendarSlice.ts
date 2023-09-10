@@ -5,20 +5,22 @@ import {
     setMonth,
     stepMonth,
     stepYear,
-} from "../../app/calendar/calendarUtils";
+} from "../../core/calendarUtils";
 // import { CalendarData } from "../components/Calendar/CalendarData";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
-interface CalendarPayload_number {
-    value: number;
+interface CalendarPayload<T> {
+    value: T;
 }
+
+type CalendarAction<PayloadType> = PayloadAction<CalendarPayload<PayloadType>>;
 
 export const calendarSlice = createSlice({
     name: "calendar",
     initialState: getInitialCalendarState(),
     reducers: {
         stepYear: {
-            reducer: (state, action: PayloadAction<CalendarPayload_number>) => {
+            reducer: (state, action: CalendarAction<number>) => {
                 stepYear(action.payload.value, state);
             },
             prepare: (value: number) => {
@@ -26,7 +28,7 @@ export const calendarSlice = createSlice({
             },
         },
         stepMonth: {
-            reducer: (state, action: PayloadAction<CalendarPayload_number>) => {
+            reducer: (state, action: CalendarAction<number>) => {
                 stepMonth(action.payload.value, state);
             },
             prepare: (value: number) => {
@@ -34,7 +36,7 @@ export const calendarSlice = createSlice({
             },
         },
         setYear: {
-            reducer: (state, action: PayloadAction<CalendarPayload_number>) => {
+            reducer: (state, action: CalendarAction<number>) => {
                 setCalendarYear(action.payload.value, state);
             },
             prepare: (value: number) => {
@@ -42,7 +44,7 @@ export const calendarSlice = createSlice({
             },
         },
         setMonth: {
-            reducer: (state, action: PayloadAction<CalendarPayload_number>) => {
+            reducer: (state, action: CalendarAction<number>) => {
                 setMonth(action.payload.value, state);
             },
             prepare: (value: number) => {

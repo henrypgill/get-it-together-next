@@ -5,8 +5,8 @@ import "../../styles/Calendar.css";
 import "../../styles/DayCard.css";
 import { CalendarDayHeadings } from "./CalendarDayHeadings";
 import { DayCard } from "./DayCard";
-import { getMonthName } from "./calendarUtils";
-import { CalendarData } from "@/src/types/calendar";
+import { getMonthName } from "../../core/calendarUtils";
+import { CalendarData } from "@/src/core/types/calendar";
 
 interface RootState {
     calendar: CalendarData;
@@ -56,12 +56,12 @@ export function CalendarApp(): JSX.Element {
                     </button>
                     <div className="days-grid">
                         {<CalendarDayHeadings />}
-                        {calendarState.days.map((calendarDay) => (
+                        {calendarState.days.map((AppDate) => (
                             <DayCard
-                                date_number={calendarDay.date}
-                                weekIndex={calendarDay.weekIndex}
-                                dayIndex={calendarDay.dayIndex}
-                                key={`${calendarDay.date}`}
+                                key={AppDate.dateTime}
+                                date={AppDate.date}
+                                week={AppDate.week}
+                                day={AppDate.day}
                             />
                         ))}
                     </div>

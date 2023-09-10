@@ -1,4 +1,4 @@
-import { CalendarData } from "@/src/types/calendar";
+import { CalendarData } from "@/src/core/types/calendar";
 import { getCalendarDaysOfMonth } from "./getCalendarDays";
 
 export function getInitialCalendarState(currentDate?: Date): CalendarData {
@@ -126,4 +126,14 @@ export function getFirstDayOfMonth(date: Date): Date {
     const firstDayOfMonth = new Date(date.getTime());
     firstDayOfMonth.setDate(1);
     return firstDayOfMonth;
+}
+
+export function calculateWeek(date: Date) {
+    const firstDayOfMonth = getFirstDayOfMonth(date);
+    const firstDayIndex = firstDayOfMonth.getDay();
+    const modifier = firstDayIndex === 0 ? 2 : 1; // handles the cases where the first day of the month is a sunday
+    const adjustedGridIndex = date.getDate() - 1 + firstDayIndex - 1;
+    const baseWeekIndex = Math.floor(adjustedGridIndex / 7);
+    const weekIndex = baseWeekIndex + modifier;
+    return weekIndex;
 }
