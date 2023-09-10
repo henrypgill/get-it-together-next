@@ -20,7 +20,7 @@ export const calendarSlice = createSlice({
                 state,
                 action: AppEventAction<EventPayload_addEventDate>
             ) => {},
-            prepare: (value: number) => {
+            prepare: (value: EventPayload_addEventDate) => {
                 return { payload: value };
             },
         },
