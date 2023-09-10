@@ -21,7 +21,6 @@ export function newAppDate(date: Date): AppDate {
         year: date.getFullYear(),
         week: calculateWeek(date),
     };
-    console.log(newAppDate);
     return newAppDate;
 }
 
