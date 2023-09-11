@@ -1,13 +1,28 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { getInitialEventState } from "@/src/core/eventUtils";
+import { createSlice } from "@reduxjs/toolkit";
+import type { PayloadAction } from "@reduxjs/toolkit";
 
-interface UserPayload {
-    value: number;
+type UserAction<PayloadType> = PayloadAction<PayloadType>;
+
+interface UserPayload_setUser {
+    user_id: number;
+    date_day: number;
+    date_monthIndex: number;
+    date_year: number;
 }
 
-export type userAction = PayloadAction<UserPayload>;
-
-export const userSlice = createSlice({
-    name: "user",
-    initialState: "",
-    reducers: {},
+export const calendarSlice = createSlice({
+    name: "calendar",
+    initialState: getInitialEventState(),
+    reducers: {
+        addUserDate: {
+            reducer: (
+                state,
+                action: UserAction<EventPayload_addEventDate>
+            ) => {},
+            prepare: (value: EventPayload_addEventDate) => {
+                return { payload: value };
+            },
+        },
+    },
 });
