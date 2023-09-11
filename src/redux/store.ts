@@ -1,4 +1,4 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
 import { calendarSlice } from "./slices/calendarSlice";
 import { userSlice } from "./slices/userSlice";
 import { CalendarData } from "../core/types/calendar";
@@ -14,6 +14,9 @@ const store = configureStore({
         calendar: calendarSlice.reducer,
         user: userSlice.reducer,
     },
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware({
+        serializableCheck: false
+    }),
 });
 
 export default store;
