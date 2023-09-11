@@ -34,12 +34,12 @@ export type UserId = number;
 
 export class User  {
     id?: UserId;
-    auth?: AuthUser;
+    auth?: FirebaseUser;
     userEvents: EventId[];
     hostedEvents: EventId[];
 
     constructor(
-        authUser?: AuthUser
+        authUser?: FirebaseUser
     ) {
         if (authUser) {
             this.auth = authUser;

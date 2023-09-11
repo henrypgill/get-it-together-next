@@ -15,15 +15,7 @@ export const userSlice = createSlice({
     name: "user",
     initialState: new User(),
     reducers: {
-        loginUser: (state, action) => new User(action.payload),
-        // loginUser: {
-        //     reducer: (state, action: UserAction<AuthUser>) => {
-        //         return new User(action.payload);
-        //     },
-        //     prepare: (value: AuthUser) => {
-        //         return { payload: value };
-        //     },
-        // },
+        loginUser: (state, action: UserAction<FirebaseUser>) => new User(action.payload),
         logoutUser: () => new User(),
     },
 });
