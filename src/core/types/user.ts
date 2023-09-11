@@ -1,46 +1,53 @@
-import { User as FireBaseAuthUser } from "firebase/auth";
+import { User as FirebaseAuthUser, UserInfo, UserMetadata } from "firebase/auth";
 import { EventId } from "./event";
+import { FirebaseAuth } from "react-firebaseui";
 
-export type AuthUser = FireBaseAuthUser;
-export type UserId = number;
+export type FirebaseUser = FirebaseAuthUser
+
+export class AuthUser {
+    displayName: string | null;
+    email: string | null;
+    metadata: UserMetadata
+    photoURL: string | null;
+    providerData: UserInfo[]
+    refreshToken: string | null;
+    
+    constructor(firebaseUser: FirebaseUser) {
+        this.displayName = firebaseUser.displayName;
+        this.email = firebaseUser.email;
+        this.metadata = firebaseUser.metadata;
+        this.photoURL = firebaseUser.photoURL;
+        this.providerData = firebaseUser.providerData;
+        this.refreshToken = firebaseUser.refreshToken;
+    }
+}
+
 
 export interface DbUser {
     id: UserId;
-    displayName: string;
+    display_name: string; // key name here isnt great as its supposed to match db
     email: string;
 }
 
-export interface IUser extends DbUser {
-    auth: AuthUser | undefined;
-    user_events: EventId[];
-    hosted_events: EventId[];
-}
 
-export class User implements IUser {
-    id: number;
-    displayName: string;
-    email: string;
-    auth: AuthUser | undefined;
-    user_events: EventId[];
-    hosted_events: EventId[];
+export type UserId = number;
+
+export class User  {
+    id?: UserId;
+    auth?: AuthUser;
+    userEvents: EventId[];
+    hostedEvents: EventId[];
 
     constructor(
-        id: number = -1,
-        displayName: string = "",
-        email: string = "",
         authUser?: AuthUser
     ) {
-        if (authUser){
+        if (authUser) {
             this.auth = authUser;
-
+            this.userEvents = [];
+            this.hostedEvents = [];
         }
 
-
-
-        this.id = id;
-        this.displayName = displayName;
-        this.email = email;
-        this.user_events = [];
-        this.hosted_events = [];
+        this.userEvents = [];
+        this.hostedEvents = [];
     }
 }

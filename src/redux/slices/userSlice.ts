@@ -1,28 +1,29 @@
-import { getInitialEventState } from "@/src/core/eventUtils";
+import { User, AuthUser, FirebaseUser } from "@/src/core/types/user";
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
+
+
 type UserAction<PayloadType> = PayloadAction<PayloadType>;
 
-interface UserPayload_setUser {
-    user_id: number;
-    date_day: number;
-    date_monthIndex: number;
-    date_year: number;
+type UserAction_LoginUser = {
+    type: string;
+    payload: User
 }
 
-export const calendarSlice = createSlice({
-    name: "calendar",
-    initialState: getInitialEventState(),
+export const userSlice = createSlice({
+    name: "user",
+    initialState: new User(),
     reducers: {
-        addUserDate: {
-            reducer: (
-                state,
-                action: UserAction<EventPayload_addEventDate>
-            ) => {},
-            prepare: (value: EventPayload_addEventDate) => {
-                return { payload: value };
-            },
-        },
+        loginUser: (state, action) => new User(action.payload),
+        // loginUser: {
+        //     reducer: (state, action: UserAction<AuthUser>) => {
+        //         return new User(action.payload);
+        //     },
+        //     prepare: (value: AuthUser) => {
+        //         return { payload: value };
+        //     },
+        // },
+        logoutUser: () => new User(),
     },
 });
