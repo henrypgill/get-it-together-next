@@ -1,16 +1,11 @@
-import { Provider, useSelector } from "react-redux";
-import { calendarSlice } from "../../redux/slices/calendarSlice";
-import store from "../../redux/store";
-import "../../styles/Calendar.css";
-import "../../styles/DayCard.css";
+import { useSelector } from "react-redux";
+import { getMonthName } from "../../../core/calendarUtils";
+import { calendarSlice } from "../../../redux/slices/calendarSlice";
+import store, { RootState } from "../../../redux/store";
+import "../../../styles/Calendar.css";
+import "../../../styles/DayCard.css";
 import { CalendarDayHeadings } from "./CalendarDayHeadings";
 import { DayCard } from "./DayCard";
-import { getMonthName } from "../../core/calendarUtils";
-import { CalendarData } from "@/src/core/types/calendar";
-
-interface RootState {
-    calendar: CalendarData;
-}
 
 export function CalendarApp(): JSX.Element {
     const calendarState = useSelector((state: RootState) => state.calendar);

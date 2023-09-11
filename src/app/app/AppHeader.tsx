@@ -1,7 +1,6 @@
 import Link from "next/link";
-import "../styles/header.css";
 
-export function Header(): JSX.Element {
+export function AppHeader(): JSX.Element {
     return (
         <header>
             <div className="header-content">

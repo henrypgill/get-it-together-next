@@ -1,8 +1,11 @@
 import "../styles/app.css";
+import { Footer } from "./Footer";
+import { Header } from "./Header";
 
 export default function Home(): JSX.Element {
     return (
         <>
+            <Header />
             <section className="home-page-title-section">
                 <h1 className="home-page-title">Get It Together</h1>
                 <h2 className="home-page-subtitle">
@@ -10,6 +13,7 @@ export default function Home(): JSX.Element {
                     a why, and choose a how.
                 </h2>
             </section>
+            <Footer />
         </>
     );
 }
