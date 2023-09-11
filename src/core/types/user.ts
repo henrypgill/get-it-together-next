@@ -3,6 +3,48 @@ import { EventId } from "./event";
 import { FirebaseAuth } from "react-firebaseui";
 
 export type FirebaseUser = FirebaseAuthUser
+export type UserId = number;
+
+
+
+
+export class User  {
+    auth?: FirebaseUser;
+    id?: UserId;
+    userEvents: EventId[];
+    hostedEvents: EventId[];
+
+    constructor(
+        authUser?: FirebaseUser
+    ) {
+        if (authUser) {
+            this.auth = authUser;
+            this.userEvents = [];
+            this.hostedEvents = [];
+        }
+
+        this.userEvents = [];
+        this.hostedEvents = [];
+    }
+}
+
+
+
+
+
+
+
+
+
+
+export interface DbUser {
+    id: UserId;
+    display_name: string; // key name here isnt great as its supposed to match db
+    email: string;
+}
+
+
+
 
 export class AuthUser {
     displayName: string | null;
@@ -19,35 +61,5 @@ export class AuthUser {
         this.photoURL = firebaseUser.photoURL;
         this.providerData = firebaseUser.providerData;
         this.refreshToken = firebaseUser.refreshToken;
-    }
-}
-
-
-export interface DbUser {
-    id: UserId;
-    display_name: string; // key name here isnt great as its supposed to match db
-    email: string;
-}
-
-
-export type UserId = number;
-
-export class User  {
-    id?: UserId;
-    auth?: FirebaseUser;
-    userEvents: EventId[];
-    hostedEvents: EventId[];
-
-    constructor(
-        authUser?: FirebaseUser
-    ) {
-        if (authUser) {
-            this.auth = authUser;
-            this.userEvents = [];
-            this.hostedEvents = [];
-        }
-
-        this.userEvents = [];
-        this.hostedEvents = [];
     }
 }
