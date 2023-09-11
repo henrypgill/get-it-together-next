@@ -28,13 +28,14 @@ export function SignInScreen(): JSX.Element {
         },
     };
 
-
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged((logInUser) => {
             if (logInUser) {
                 // const authUser = new AuthUser(logInUser )
                 store.dispatch(
-                    userSlice.actions.loginUser(new User(logInUser as FirebaseUser))
+                    userSlice.actions.loginUser(
+                        new User(logInUser as FirebaseUser)
+                    )
                 ); //TODO: Danger with the as statement here, need to find a better solution.
             } else {
                 store.dispatch(userSlice.actions.logoutUser());
