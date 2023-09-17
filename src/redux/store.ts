@@ -14,11 +14,6 @@ const store = configureStore({
         calendar: calendarSlice.reducer,
         user: userSlice.reducer,
     },
-    middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({
-        serializableCheck: false,
-        immutableCheck: false,
-    }),
 });
 
 export default store;

@@ -1,4 +1,4 @@
-import { FirebaseUser, User } from "@/src/core/types/user";
+import { FirebaseUser, User, createAuthUser } from "@/src/core/types/user";
 import { userSlice } from "@/src/redux/slices/userSlice";
 import store, { RootState } from "@/src/redux/store";
 import "firebase/compat/auth";
@@ -10,15 +10,16 @@ import { auth, getFirebaseUiConfig } from "./configureFirebase";
 
 export function SignInScreen(): JSX.Element {
     const user = useSelector((state: RootState) => state.user);
+    console.log("user", user);
+
 
     useEffect(() => {
-        debugger
         const unsubscribe = auth.onAuthStateChanged((logInUser) => {
             if (logInUser) {
                 // const authUser = new AuthUser(logInUser )
                 store.dispatch(
                     userSlice.actions.loginUser(
-                        new User(logInUser as FirebaseUser)
+                        createAuthUser(logInUser as FirebaseUser)
                     )
                 ); //TODO: Danger with the as statement here, need to find a better solution.
             } else {
@@ -28,7 +29,8 @@ export function SignInScreen(): JSX.Element {
         return () => unsubscribe();
     }, []);
 
-    if (!user.auth) {
+
+    if (!user.auth.uid) {
         return (
             <div>
                 <h1>My App</h1>
