@@ -1,5 +1,5 @@
 import { FirebaseUser, createAuthUser } from "@/src/core/types/user";
-import { userSlice } from "@/src/redux/slices/userSlice";
+import { userActions, userSlice } from "@/src/redux/slices/userSlice";
 import store, { RootState, useAppDispatch, useAppSelector } from "@/src/redux/store";
 import "firebase/compat/auth";
 import { redirect } from "next/navigation";
@@ -17,12 +17,12 @@ export function SignInScreen(): JSX.Element {
         const unsubscribe = auth.onAuthStateChanged((logInUser) => {
             if (logInUser) {
                 dispatch(
-                    userSlice.actions.loginUser(
+                    userActions.loginUser(
                         createAuthUser(logInUser as FirebaseUser)
                     )
                 );
             } else {
-                dispatch(userSlice.actions.logoutUser());
+                dispatch(userActions.logoutUser());
             }
         });
         return () => unsubscribe();
