@@ -89,7 +89,7 @@ export function getNumberOfDaysInMonth(monthIndex: number /*MonthIndex*/) {
  */
 export function getMonthName(monthIndex: number): string {
     if (monthIndex > 11 || monthIndex < 0) {
-        return "month index exceeds bounds 0 - 11";
+        throw new Error("month index exceeds bounds 0 - 11");
     }
 
     switch (monthIndex) {
@@ -130,10 +130,9 @@ export function getFirstDayOfMonth(date: Date): Date {
 
 export function calculateWeek(date: Date) {
     const firstDayOfMonth = getFirstDayOfMonth(date);
-    const firstDayIndex = firstDayOfMonth.getDay();
-    const modifier = firstDayIndex === 0 ? 2 : 1; // handles the cases where the first day of the month is a sunday
+    const firstDayIndex = firstDayOfMonth.getDay() === 0 ? 7 : firstDayOfMonth.getDay();
     const adjustedGridIndex = date.getDate() - 1 + firstDayIndex - 1;
     const baseWeekIndex = Math.floor(adjustedGridIndex / 7);
-    const weekIndex = baseWeekIndex + modifier;
+    const weekIndex = baseWeekIndex + 1;
     return weekIndex;
 }
