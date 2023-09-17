@@ -1,25 +1,20 @@
 import Link from "next/link";
+import { auth, handleSignOut } from "./user-login/configureFirebase";
+import { useSelector } from "react-redux";
+import { RootState } from "@/src/redux/store";
+import { Navigation } from "../navigation";
+import { UserInfo } from "./userInfo";
 
 export function AppHeader(): JSX.Element {
+    const user = useSelector((state: RootState) => state.user);
+
     return (
         <header>
             <div className="header-content">
-                <nav>
-                    <ul className="nav-list">
-                        <li>
-                            <Link href="/">Home</Link>
-                        </li>
-                        <li>
-                            <Link href="/app/calendar">Calendar</Link>
-                        </li>
-                        <li></li>
-                    </ul>
-                </nav>
-                <div className="user-info-container">
-                    <h3>
-                        <Link href="/app/user-login">Log In</Link>
-                    </h3>
-                </div>
+                <Navigation />
+            </div>
+            <div className="user-info-container">
+                <UserInfo />
             </div>
         </header>
     );

@@ -1,34 +1,18 @@
-import React, { useEffect, useState } from "react";
-import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
-import firebase from "firebase/compat/app";
-import "firebase/compat/auth";
-import { getFirebaseConfig } from "./configureFirebase";
-import store, { RootState } from "@/src/redux/store";
-import { useSelector } from "react-redux";
+import { FirebaseUser, User } from "@/src/core/types/user";
 import { userSlice } from "@/src/redux/slices/userSlice";
-import { AuthUser, FirebaseUser, User } from "@/src/core/types/user";
+import store, { RootState } from "@/src/redux/store";
+import "firebase/compat/auth";
+import { redirect } from "next/navigation";
+import { useEffect } from "react";
+import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
+import { useSelector } from "react-redux";
+import { auth, getFirebaseUiConfig } from "./configureFirebase";
 
 export function SignInScreen(): JSX.Element {
     const user = useSelector((state: RootState) => state.user);
 
-    const firebaseConfig = getFirebaseConfig();
-    firebase.initializeApp(firebaseConfig);
-
-    const auth = firebase.auth();
-
-    const uiConfig = {
-        signInFlow: "popup",
-        signInSuccessUrl: "/",
-        signInOptions: [
-            firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-            firebase.auth.EmailAuthProvider.PROVIDER_ID,
-        ],
-        callbacks: {
-            signInSuccessWithAuthResult: () => false,
-        },
-    };
-
     useEffect(() => {
+        debugger
         const unsubscribe = auth.onAuthStateChanged((logInUser) => {
             if (logInUser) {
                 // const authUser = new AuthUser(logInUser )
@@ -50,21 +34,13 @@ export function SignInScreen(): JSX.Element {
                 <h1>My App</h1>
                 <p>Please sign-in:</p>
                 <StyledFirebaseAuth
-                    uiConfig={uiConfig}
-                    firebaseAuth={firebase.auth()}
+                    uiConfig={getFirebaseUiConfig()}
+                    firebaseAuth={auth}
                 />
             </div>
         );
     } else if (user) {
-        return (
-            <div>
-                <h1>My App</h1>
-                <p>Welcome {user.auth.displayName}! You are now signed-in!</p>
-                <button onClick={() => firebase.auth().signOut()}>
-                    Sign-out
-                </button>
-            </div>
-        );
+        return <>{redirect("/app")}</>;
     } else {
         return <h1>error</h1>;
     }
