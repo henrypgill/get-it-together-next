@@ -1,6 +1,6 @@
 import { FirebaseUser, createAuthUser } from "@/src/core/types/user";
 import { userSlice } from "@/src/redux/slices/userSlice";
-import store, { RootState } from "@/src/redux/store";
+import store, { RootState, useAppDispatch, useAppSelector } from "@/src/redux/store";
 import "firebase/compat/auth";
 import { redirect } from "next/navigation";
 import { useEffect } from "react";
@@ -9,19 +9,20 @@ import { useSelector } from "react-redux";
 import { auth, getFirebaseUiConfig } from "./configureFirebase";
 
 export function SignInScreen(): JSX.Element {
-    const user = useSelector((state: RootState) => state.user);
+    const user = useAppSelector((state: RootState) => state.user);
+    const dispatch = useAppDispatch();
     console.log("user", user);
 
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged((logInUser) => {
             if (logInUser) {
-                store.dispatch(
+                dispatch(
                     userSlice.actions.loginUser(
                         createAuthUser(logInUser as FirebaseUser)
                     )
                 );
             } else {
-                store.dispatch(userSlice.actions.logoutUser());
+                dispatch(userSlice.actions.logoutUser());
             }
         });
         return () => unsubscribe();

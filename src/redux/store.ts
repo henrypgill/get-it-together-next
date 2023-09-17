@@ -1,19 +1,23 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { CalendarData } from "../core/types/calendar";
 import { User } from "../core/types/user";
-import { calendarSlice } from "./slices/calendarSlice";
-import { userSlice } from "./slices/userSlice";
+import calendarReducer from "./slices/calendarSlice";
+import userReducer from "./slices/userSlice";
+import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 
-export interface RootState {
-    calendar: CalendarData;
-    user: User;
-}
+export type RootState = ReturnType<typeof store.getState>
+export type AppDispatch = typeof store.dispatch
 
 const store = configureStore({
     reducer: {
-        calendar: calendarSlice.reducer,
-        user: userSlice.reducer,
+        calendar: calendarReducer,
+        user: userReducer,
     },
 });
 
 export default store;
+
+
+
+export const useAppDispatch: () => AppDispatch = useDispatch
+export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector

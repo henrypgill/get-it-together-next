@@ -1,3 +1,4 @@
+import type { PayloadAction } from "@reduxjs/toolkit";
 import { createSlice } from "@reduxjs/toolkit";
 import {
     getInitialCalendarState,
@@ -6,7 +7,6 @@ import {
     stepMonth,
     stepYear,
 } from "../../core/calendarUtils";
-import type { PayloadAction } from "@reduxjs/toolkit";
 
 interface CalendarPayload<T> {
     value: T;
@@ -52,3 +52,6 @@ export const calendarSlice = createSlice({
         },
     },
 });
+
+export default calendarSlice.reducer;
+export const calendarActions = calendarSlice.actions;

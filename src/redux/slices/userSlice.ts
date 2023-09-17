@@ -19,3 +19,5 @@ export const userSlice = createSlice({
         logoutUser: () => createInitialUser(),
     },
 });
+
+export default userSlice.reducer;
