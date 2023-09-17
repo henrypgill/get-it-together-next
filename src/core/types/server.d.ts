@@ -6,13 +6,6 @@ export interface DbEventData {
     event_location: EventLocation;
 }
 
-export interface DbUserData {
-    user_id: number;
-    user_first_name: string;
-    user_last_name: string;
-    user_email: string;
-}
-
 interface EventLocation {
     name: string;
     googleMapsUrl?: string;

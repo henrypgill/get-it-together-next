@@ -1,6 +1,6 @@
 import { getInitialEventState } from "@/src/core/eventUtils";
-import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 type AppEventAction<PayloadType> = PayloadAction<PayloadType>;
 

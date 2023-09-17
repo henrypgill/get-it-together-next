@@ -11,14 +11,14 @@ export function Header(): JSX.Element {
                             <Link href="/">Home</Link>
                         </li>
                         <li>
-                            <Link href="/calendar">Calendar</Link>
+                            <Link href="/app/calendar">Calendar</Link>
                         </li>
                         <li></li>
                     </ul>
                 </nav>
                 <div className="user-info-container">
                     <h3>
-                        <Link href="/user-login">Log In</Link>
+                        <Link href="/app/user-login">Log In</Link>
                     </h3>
                 </div>
             </div>

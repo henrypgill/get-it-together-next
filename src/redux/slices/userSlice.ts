@@ -1,13 +1,21 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { AuthUser, User, createInitialUser } from "@/src/core/types/user";
+import type { PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
-interface UserPayload {
-    value: number;
-}
+type UserAction<PayloadType> = PayloadAction<PayloadType>;
 
-export type userAction = PayloadAction<UserPayload>;
+type UserAction_LoginUser = {
+    type: string;
+    payload: User;
+};
 
 export const userSlice = createSlice({
     name: "user",
-    initialState: "",
-    reducers: {},
+    initialState: createInitialUser(),
+    reducers: {
+        loginUser: (state, action: UserAction<AuthUser>) => {
+            state.auth = action.payload;
+        },
+        logoutUser: () => createInitialUser(),
+    },
 });
