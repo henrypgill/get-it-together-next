@@ -1,7 +1,5 @@
-import Link from "next/link";
-import { auth, handleSignOut } from "./user-login/configureFirebase";
-import { useSelector } from "react-redux";
 import { RootState } from "@/src/redux/store";
+import { useSelector } from "react-redux";
 import { Navigation } from "../navigation";
 import { UserInfo } from "./userInfo";
 

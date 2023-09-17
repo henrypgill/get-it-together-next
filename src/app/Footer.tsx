@@ -1,4 +1,3 @@
-import Link from "next/link";
 import "../styles/footer.css";
 
 export function Footer(): JSX.Element {

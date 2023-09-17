@@ -1,8 +1,8 @@
-import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
-import { calendarSlice } from "./slices/calendarSlice";
-import { userSlice } from "./slices/userSlice";
+import { configureStore } from "@reduxjs/toolkit";
 import { CalendarData } from "../core/types/calendar";
 import { User } from "../core/types/user";
+import { calendarSlice } from "./slices/calendarSlice";
+import { userSlice } from "./slices/userSlice";
 
 export interface RootState {
     calendar: CalendarData;

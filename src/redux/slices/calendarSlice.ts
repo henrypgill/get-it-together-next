@@ -6,7 +6,6 @@ import {
     stepMonth,
     stepYear,
 } from "../../core/calendarUtils";
-// import { CalendarData } from "../components/Calendar/CalendarData";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
 interface CalendarPayload<T> {
